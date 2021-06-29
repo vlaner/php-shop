@@ -1,9 +1,10 @@
 <?php
 
 require __DIR__ .  "/../vendor/autoload.php";
-
-$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__, 1));
-$dotenv->load();
+if (file_exists(__DIR__ . '/.env')) {
+    $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__, 1));
+    $dotenv->load();
+}
 
 class Database
 {
