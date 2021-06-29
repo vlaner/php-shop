@@ -1,7 +1,5 @@
 const cartAdd = async (clickInfo) => {
-    const productId = parseInt(
-        clickInfo.explicitOriginalTarget.attributes['product-id'].value
-    )
+    const productId = parseInt(clickInfo.target.attributes['product-id'].value)
 
     const data = JSON.stringify({ product_id: productId })
 
