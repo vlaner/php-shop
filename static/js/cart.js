@@ -1,7 +1,5 @@
 const removeItem = async (clickInfo) => {
-    const productId = parseInt(
-        clickInfo.explicitOriginalTarget.attributes['product-id'].value
-    )
+    const productId = parseInt(clickInfo.target.attributes['product-id'].value)
 
     const data = JSON.stringify({ product_id: productId })
 
@@ -15,10 +13,9 @@ const removeItem = async (clickInfo) => {
 
 const handleAmount = async (clickInfo) => {
     const productId = parseInt(
-        clickInfo.explicitOriginalTarget.parentNode.attributes['product-id']
-            .value
+        clickInfo.target.parentNode.attributes['product-id'].value
     )
-    const action = clickInfo.explicitOriginalTarget.classList[1]
+    const action = clickInfo.target.classList[1]
 
     if (!(action == 'decrease' || action == 'increase')) return
 
@@ -32,7 +29,7 @@ const handleAmount = async (clickInfo) => {
     let result = await response.json()
 
     if (!(result === -1)) {
-        let parent = clickInfo.explicitOriginalTarget.parentNode
+        let parent = clickInfo.target.parentNode
         let summary = document.getElementById('summary')
         let overallItems = document.getElementById('items-count')
         let amount = parent.getElementsByClassName('amount')[0]
@@ -65,9 +62,7 @@ const buyProducts = async () => {
 
 const restock = async (clickInfo) => {
     console.log(clickInfo)
-    const productId = parseInt(
-        clickInfo.explicitOriginalTarget.attributes['product-id'].value
-    )
+    const productId = parseInt(clickInfo.target.attributes['product-id'].value)
 
     const data = JSON.stringify({ product_id: productId })
 

@@ -11,12 +11,12 @@ const cartAdd = async (clickInfo) => {
     const result = JSON.parse(await response.json())
 
     if (result === -1) {
-        clickInfo.explicitOriginalTarget.text = 'Failed to add to cart'
+        clickInfo.target.text = 'Failed to add to cart'
         return
     }
-    clickInfo.explicitOriginalTarget.text = 'Added to cart'
-    clickInfo.explicitOriginalTarget.href = '/cart/show.php'
-    clickInfo.explicitOriginalTarget.removeEventListener('click', cartAdd)
+    clickInfo.target.text = 'Added to cart'
+    clickInfo.target.href = '/cart/show.php'
+    clickInfo.target.removeEventListener('click', cartAdd)
 }
 const loadItems = async () => {
     const productName = document.getElementById('product-name')
