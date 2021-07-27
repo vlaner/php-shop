@@ -28,21 +28,20 @@ const handleAmount = async (clickInfo) => {
 
     let result = await response.json()
 
-    if (!(result === -1)) {
-        let parent = clickInfo.target.parentNode
-        let summary = document.getElementById('summary')
-        let overallItems = document.getElementById('items-count')
-        let amount = parent.getElementsByClassName('amount')[0]
-        let stock = parent.getElementsByClassName('stock')[0]
+    let parent = clickInfo.target.parentNode
 
-        summary.innerHTML = `Summary ${result.summary} ₽`
-        overallItems.innerHTML = `Overall items ${result.overallItems}`
-        amount.innerHTML = `Amount ${result.itemCount}`
-        stock.innerHTML = `|Available in stock ${result.inStock}|`
-    }
+    let summary = document.getElementById('summary')
+    let overallItems = document.getElementById('items-count')
+    let amount = parent.getElementsByClassName('amount')[0]
+    let stock = parent.getElementsByClassName('stock')[0]
+
+    summary.innerHTML = `Summary ${result.summary} ₽`
+    overallItems.innerHTML = `Overall items ${result.overallItems}`
+    amount.innerHTML = `Amount ${result.itemCount}`
+    stock.innerHTML = `|Available in stock ${result.inStock}|`
 }
 
-const buyProducts = async () => {
+const buyProducts = async (clickInfo) => {
     let response = await fetch('/ajax/purchase.php', {
         method: 'POST',
     })
@@ -52,36 +51,20 @@ const buyProducts = async () => {
 
     if (result == -2) buyBtn.innerHTML = 'Not enough money'
     if (result == -1) {
-        location.reload()
+        let container = document.getElementsByClassName('container')[1]
+        let errDiv = document.createElement('div')
+        errDiv.classList.add('text-danger')
+        errDiv.innerHTML = 'Check products stock or amount'
+
+        container.prepend(errDiv)
     }
     if (result == 1) {
-        document.getElementsByClassName('container-flex')[0].innerHTML =
+        document.getElementsByClassName('container')[1].innerHTML =
             'Successfully bought items'
     }
 }
 
-const restock = async (clickInfo) => {
-    console.log(clickInfo)
-    const productId = parseInt(clickInfo.target.attributes['product-id'].value)
-
-    const data = JSON.stringify({ product_id: productId })
-
-    let response = await fetch('/ajax/restock.php', {
-        method: 'POST',
-        body: data,
-    })
-
-    let result = JSON.parse(await response.json())
-
-    if (result == 1) location.reload()
-    if (result == -1) {
-        let restock = parent.getElementsByClassName('restock')[0]
-        restock.innerHTML = 'Could not restock'
-    }
-}
-
 const delBtns = document.getElementsByClassName('delete')
-const restockBtns = document.getElementsByClassName('restock')
 const cartBtns = document.getElementsByClassName('cart-btn')
 
 try {
@@ -90,9 +73,6 @@ try {
 
 for (const btn of cartBtns) {
     btn.addEventListener('click', handleAmount)
-}
-for (const btn of restockBtns) {
-    btn.addEventListener('click', restock)
 }
 
 for (const btn of delBtns) {

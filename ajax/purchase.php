@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 session_start();
 require '../utils/products.php';
 require "../utils/adjustCartItems.php";
@@ -18,8 +19,14 @@ $body = file_get_contents('php://input');
 $data = json_decode($body, true);
 
 if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
+
+
     $summary = 0;
-    foreach ($_SESSION['cart'] as $productKey => $productValue) {
+    foreach ($_SESSION['cart'] as $productValue) {
+        if ($productValue['count'] == 0) {
+            echo json_encode(-1);
+            die();
+        }
         $summary += $productValue['price'] * $productValue['count'];
     }
 
@@ -36,8 +43,10 @@ if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
         echo json_encode(-1);
         die();
     }
+
     $_SESSION['cart'] = [];
     $_SESSION['money'] -= $summary;
+
     echo json_encode(1);
 } else {
     echo json_encode(-1);

@@ -37,7 +37,7 @@ if (isset($data['product_id']) && isset($data['action'])) {
 
     if ($data['action'] == 'decrease') {
         if ($cartProduct['count'] - 1 < 1) {
-            $_SESSION['cart'][$data['product_id']]['count'] = 1;
+            $_SESSION['cart'][$data['product_id']]['count'] = 0;
         } else {
             $_SESSION['cart'][$data['product_id']]['count']--;
         }

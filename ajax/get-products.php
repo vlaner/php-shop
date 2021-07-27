@@ -16,13 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') die();
 $body = file_get_contents('php://input');
 $data = json_decode($body, true);
 
+$_SESSION['offset'] += 2;
+
 $productsClass = new Products();
 if (!isset($data['product_name'])) {
-    $_SESSION['offset'] += 10;
-    $products = $productsClass->getProducts(10, $_SESSION['offset']);
+    $products = $productsClass->getProducts(2, $_SESSION['offset']);
 } else {
     $prodName = $data['product_name'];
     $products = $productsClass->getProductsByName($prodName, $_SESSION['offset']);
-    $_SESSION['offset'] += 10;
 }
 echo json_encode($products);
