@@ -29,7 +29,7 @@ const deleteProd = async (clickInfo) => {
         method: 'DELETE',
         body: data,
     })
-    let result = await response.json()
+    let result = JSON.parse(await response.json())
 
     console.log(result)
 
