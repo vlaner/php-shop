@@ -42,7 +42,6 @@ const login = async () => {
     })
 
     let result = await response.json()
-    console.log(response)
 
     if (result == -2) {
         emailElem.classList.remove('is-valid')

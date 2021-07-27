@@ -22,7 +22,6 @@ const updateProduct = async () => {
         err.push('Price is required')
     }
     if (!Number.isInteger(id)) {
-        console.log(id)
         return
     }
 

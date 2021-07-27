@@ -81,7 +81,7 @@ if (!empty($_GET['id'])) {
             <h2>
             <span class='text-wrap'>{$title}</span>
             <br/>
-                <img src={$photo}>
+                <img src={$photo} onerror=this.src='/static/photos/default.jpg'>
             </h2>
             <div>
                 <span class='description'>{$description}</span>

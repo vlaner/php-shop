@@ -24,7 +24,8 @@ if (isset($_GET['q'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/styles.css">
     <title>SHOP</title>
     <script defer src="/static/js/index.js"></script>
@@ -47,7 +48,8 @@ if (isset($_GET['q'])) {
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="/">
                     <div class="input-group">
-                        <input type="search" name="q" id="search-item" class="form-control form-control-dark" placeholder="Search...">
+                        <input type="search" name="q" id="search-item" class="form-control form-control-dark"
+                            placeholder="Search...">
                         <button type="submit" class="btn btn-secondary">Search</button>
                     </div>
                 </form>
@@ -77,7 +79,7 @@ if (isset($_GET['q'])) {
                         "
                     <div class='col-md-4'>
                         <a href='product/show.php?id={$productId}'>
-                            <img src={$photo}>
+                            <img src={$photo} onerror=this.src='/static/photos/default.jpg'>
                         </a>
                         </br>
                         <a class='link-dark' href='product/show.php?id={$productId}'>

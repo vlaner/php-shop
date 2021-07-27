@@ -82,7 +82,7 @@ if (!isset($_SESSION['cart'])) {
                     $quantity = $productValue['quantity'];
                     echo "
                         <div class='p-2' product-id={$productKey}>
-                            <img src='{$photo}'></img>
+                            <img src='{$photo}' onerror=this.src='/static/photos/default.jpg'></img>
 
                             <a class='delete btn btn-outline-dark link-danger' product-id={$productKey}>Delete</a>
                             

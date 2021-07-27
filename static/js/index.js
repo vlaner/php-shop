@@ -34,7 +34,7 @@ const loadItems = async () => {
     }
 
     const result = JSON.parse(await response.json())
-    console.log(result)
+
     if (result == -1) {
         document.getElementsByClassName('show-more')[0].remove()
         return
