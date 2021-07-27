@@ -52,6 +52,7 @@ const loadItems = async () => {
         cardPhoto.href = 'product/show.php?id=' + id
         let image = document.createElement('img')
         image.src = photo
+        image.setAttribute('onerror', "this.src='/static/photos/default.jpg'")
         cardPhoto.appendChild(image)
 
         let br = document.createElement('br')
