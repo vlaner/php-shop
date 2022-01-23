@@ -115,9 +115,9 @@ if (isset($_GET['q'])) {
     </div>
     <div class="show-more">
         <?php
-        if (!empty($_GET['q'])) {
+        if (!empty($get)) {
 
-            echo "<div hidden id='product-name'>{$_GET['q']}</div>";
+            echo "<div hidden id='product-name'>{$get}</div>";
         }
         ?>
         <div class="mt-5 d-flex align-items-center justify-content-center">
